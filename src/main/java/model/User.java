@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -8,10 +9,14 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_id;
+    private Long user_id;
+    @NotBlank(message = "Mandatory")
     private String user_name;
+    @NotBlank(message = "Mandatory")
     private String email;
+    @NotBlank(message = "Mandatory")
     private String passwsord;
+
     private String image_file;
 
     @OneToMany(cascade = CascadeType.ALL)
