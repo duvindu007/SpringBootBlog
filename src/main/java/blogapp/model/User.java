@@ -1,4 +1,4 @@
-package model;
+package blogapp.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
     @NotBlank(message = "Mandatory")
     private String user_name;
@@ -19,11 +19,11 @@ public class User {
 
     private String image_file;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "posts", referencedColumnName = "user_id")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Posts.class)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private Set<Posts> posts;
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
@@ -59,7 +59,7 @@ public class User {
         this.image_file = image_file;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 

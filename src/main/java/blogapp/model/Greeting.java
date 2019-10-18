@@ -1,4 +1,4 @@
-package model;
+package blogapp.model;
 
 public class Greeting {
 
